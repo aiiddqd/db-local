@@ -1,10 +1,22 @@
 services:
+  # url https://localhost:8980/?server=host.docker.internal 
+  adminer:
+    image: adminer:5
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8980:8080"
+    restart: always
+
   mariadb:
     image: mariadb:10.11
     container_name: mariadb-db
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: default
+      MYSQL_DATABASE: local
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     volumes:
@@ -21,7 +33,7 @@ services:
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: default
+      MYSQL_DATABASE: local
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     volumes:
@@ -39,7 +51,7 @@ services:
     container_name: postgres-db
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: dbdefault
+      POSTGRES_DB: local
       POSTGRES_USER: user
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
@@ -63,9 +75,3 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-  adminer:
-    image: adminer:4
-    container_name: adminer
-    ports:
-      - "8980:8080"
