@@ -1,6 +1,15 @@
 # DB Local
 Local development environment for various databases using Compose Specification https://www.compose-spec.io/
 
+Readme https://github.com/aiiddqd/db-local
+
+## Supported Databases
+- MySQL
+- MariaDB
+- Redis
+- PostgreSQL
+
+
 ## Specs and Benefits
 - Zero downtime: Update apps or DB independently
 - Simpler management: Separate docker-compose.yml files for apps and DB
@@ -10,8 +19,3 @@ Local development environment for various databases using Compose Specification 
 - Supports multiple database types.
 
 
-## Supported Databases
-- MySQL
-- MariaDB
-- Redis
-- PostgreSQL
